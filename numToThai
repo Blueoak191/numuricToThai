@@ -1,0 +1,33 @@
+//as a function.
+public static String getTHChange(int n) {
+		String[] num0 = { "", "หนึ่ง", "สอง", "สาม", "สี่", "ห้า", "หก", "เจ็ด", "แปด", "เก้า" };
+		String[] num1 = { "", "เอ็ด", "สอง", "สาม", "สี่", "ห้า", "หก", "เจ็ด", "แปด", "เก้า" };
+		String[] num2 = { "", "หนึ่ง", "ยี่", "สาม", "สี่", "ห้า", "หก", "เจ็ด", "แปด", "เก้า" };
+
+		String[] num = num0;
+		String[] digit = { "บาท", "สิบ", "ร้อย", "พัน", "หมื่น", "แสน", "ล้าน" };
+
+		String str = String.valueOf(n);
+		String ret = "";
+
+		for (int i = 0; i < str.length(); i++) {
+			int ch = Character.digit(str.charAt(i), 10);
+			int d = str.length() - i - 1;
+
+			if (n > 9) {
+				num = d > 1 ? num2 : num1;
+
+				if (ch != 1 || d != 1)
+					ret += num[ch];
+
+				if (ch != 0 && d > 0)
+					ret += digit[d];
+			} else {
+				ret += num[ch];
+			}
+
+		}
+		ret += digit[0];
+
+		return ret;
+	}
